@@ -1,0 +1,24 @@
+{
+  "name": "design-stystem",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <img alt=\"\" src=\"./github/capa.png\" width=\"100%\">\r </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anna-Luiza-Gusmao/design-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Anna-Luiza-Gusmao/design-system/issues"
+  },
+  "homepage": "https://github.com/Anna-Luiza-Gusmao/design-system#readme",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
