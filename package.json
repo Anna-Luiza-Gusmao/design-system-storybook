@@ -4,7 +4,8 @@
   "description": "<p align=\"center\">\r   <img alt=\"\" src=\"./github/capa.png\" width=\"100%\">\r </p>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "turbo": "^1.7.0"
+  }
 }
