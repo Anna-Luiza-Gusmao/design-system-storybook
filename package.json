@@ -1,28 +1,21 @@
 {
   "name": "design-stystem",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r   <img alt=\"\" src=\"./github/capa.png\" width=\"100%\">\r </p>",
   "main": "index.js",
   "scripts": {
     "dev": "turbo run dev --parallel",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=@anna-ignite-ui-dev/docs && changeset publish"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Anna-Luiza-Gusmao/design-system.git"
-  },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Anna-Luiza-Gusmao/design-system/issues"
-  },
-  "homepage": "https://github.com/Anna-Luiza-Gusmao/design-system#readme",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "turbo": "^1.7.0"
   }
 }
