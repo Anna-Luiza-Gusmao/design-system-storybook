@@ -8,6 +8,13 @@ export default {
     src: 'https://avatars.githubusercontent.com/u/87679298?v=4',
     alt: 'Anna Luiza',
   },
+  argTypes: {
+    src: {
+      control: {
+        type: 'text'
+      }
+    }
+  }
 } as Meta<AvatarProps>
 
 export const Primary: StoryObj<AvatarProps> = {}
