@@ -1681,4 +1681,25 @@ declare namespace MultiStep {
     var displayName: string;
 }
 
-export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps };
+interface TooltipProps {
+    day: number;
+    month: string;
+    availability: boolean;
+}
+declare function Tooltip({ day, month, availability }: TooltipProps): JSX.Element;
+declare namespace Tooltip {
+    var displayName: string;
+}
+
+interface ToastProps {
+    dayOfTheWeek: string;
+    day: number;
+    month: string;
+    hour: string;
+}
+declare function Toast({ dayOfTheWeek, day, month, hour }: ToastProps): JSX.Element;
+declare namespace Toast {
+    var displayName: string;
+}
+
+export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps, Toast, ToastProps, Tooltip, TooltipProps };

@@ -75,7 +75,8 @@ var fontWeights = {
 // src/fonts.ts
 var fonts = {
   default: "Roboto, sans-serif",
-  code: "monospace"
+  code: "monospace",
+  tooltip: "Inter, sans-serif"
 };
 
 // src/line-heights.ts

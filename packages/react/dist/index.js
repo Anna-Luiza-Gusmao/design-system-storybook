@@ -63,7 +63,9 @@ __export(src_exports, {
   MultiStep: () => MultiStep,
   Text: () => Text,
   TextArea: () => TextArea,
-  TextInput: () => TextInput
+  TextInput: () => TextInput,
+  Toast: () => Toast2,
+  Tooltip: () => Tooltip2
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -106,7 +108,8 @@ var fontWeights = {
 };
 var fonts = {
   default: "Roboto, sans-serif",
-  code: "monospace"
+  code: "monospace",
+  tooltip: "Inter, sans-serif"
 };
 var lineHeights = {
   shorter: "125%",
@@ -528,6 +531,173 @@ function MultiStep({ size, currentStep = 1 }) {
   ] });
 }
 MultiStep.displayName = "MultiStep";
+
+// src/components/Tooltip/index.tsx
+var import_react_tooltip = require("@radix-ui/react-tooltip");
+
+// src/components/Tooltip/styles.ts
+var Tooltip = __toESM(require("@radix-ui/react-tooltip"));
+var TooltipContainer = styled(Tooltip.Root, {});
+var TooltipItem = styled("button", {
+  all: "unset",
+  padding: "$4 1.625rem",
+  background: "$gray800",
+  border: 0,
+  borderRadius: "$sm",
+  color: "$white",
+  fontFamily: "$default",
+  fontWeight: "$regular",
+  fontSize: "$md",
+  "&:hover": {
+    cursor: "pointer"
+  }
+});
+var TooltipPortal = styled(Tooltip.Portal, {});
+var TooltipContent = styled(Tooltip.Content, {
+  fontFamily: "$tooltip",
+  lineHeight: "$short",
+  fontSize: "$sm",
+  color: "$gray100",
+  borderRadius: "$sm",
+  padding: "$3 $4",
+  backgroundColor: "$gray900",
+  userSelect: "none"
+});
+var TooltipArrow = styled(Tooltip.Arrow, {
+  fill: "$gray900"
+});
+
+// src/components/Tooltip/index.tsx
+var import_jsx_runtime5 = require("react/jsx-runtime");
+function Tooltip2({ day, month, availability }) {
+  const checkaAvailability = () => {
+    if (availability === true)
+      return "Dispon\xEDvel";
+    else
+      return "Indispon\xEDvel";
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_tooltip.TooltipProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(TooltipContainer, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_tooltip.TooltipTrigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipItem, { children: day }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipPortal, { children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(TooltipContent, { sideOffset: 5, children: [
+      day,
+      " de ",
+      month,
+      " - ",
+      checkaAvailability(),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(TooltipArrow, {})
+    ] }) })
+  ] }) });
+}
+Tooltip2.displayName = "Tooltip";
+
+// src/components/Toast/index.tsx
+var import_react_toast = require("@radix-ui/react-toast");
+
+// src/components/Toast/styles.ts
+var Toast = __toESM(require("@radix-ui/react-toast"));
+var Button2 = styled("button", {
+  all: "unset",
+  borderRadius: "$sm",
+  fontSize: "$sm",
+  fontWeight: "$medium",
+  fontFamily: "$default",
+  textAlign: "center",
+  minWidth: 120,
+  boxSizing: "border-box",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+  padding: "$4 $4",
+  cursor: "pointer",
+  color: "$white",
+  background: "$ignite500",
+  "&:hover": {
+    background: "$ignite300"
+  }
+});
+var ToastContainer = styled(Toast.Root, {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: "$16",
+  background: "$gray800",
+  border: "1px solid $gray600",
+  padding: "$3 $5",
+  borderRadius: 6
+});
+var ToastViewport = styled(Toast.Viewport, {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  display: "flex",
+  flexDirection: "column",
+  padding: "$8",
+  maxWidth: "100vw",
+  margin: 0,
+  listStyle: "none",
+  zIndex: 2147483647,
+  outline: "none"
+});
+var ToastTitle = styled(Toast.Title, {
+  color: "$white",
+  fontFamily: "$default",
+  fontWeight: "$bold",
+  lineHeight: "$base",
+  fontSize: "$5"
+});
+var ToastDescription = styled(Toast.Description, {
+  color: "$gray200",
+  fontFamily: "$default",
+  fontWeight: "$regular",
+  lineHeight: "$base",
+  fontSize: "0.875rem",
+  margin: 0
+});
+var ToastAction = styled(Toast.Action, {
+  gridArea: "action"
+});
+var CloseButton = styled("button", {
+  all: "unset",
+  display: "inline-flex",
+  justifyContent: "flex-end"
+});
+
+// src/components/Toast/index.tsx
+var import_react2 = require("react");
+var import_phosphor_react3 = require("phosphor-react");
+var import_jsx_runtime6 = require("react/jsx-runtime");
+function Toast2({ dayOfTheWeek, day, month, hour }) {
+  const [open, setOpen] = (0, import_react2.useState)(false);
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_react_toast.ToastProvider, { swipeDirection: "right", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      Button2,
+      {
+        onClick: () => {
+          setOpen(!open);
+        },
+        children: "Open Toast"
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastContainer, { open, onOpenChange: setOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastTitle, { children: "Agendamento realizado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", { children: [
+          dayOfTheWeek,
+          ", ",
+          day,
+          " de ",
+          month,
+          " \xE0s ",
+          hour,
+          "h"
+        ] }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastAction, { asChild: true, altText: "Agendamento Realizado", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CloseButton, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_phosphor_react3.X, { size: 24, color: "#A9A9B2", style: { cursor: "pointer" } }) }) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastViewport, {})
+  ] });
+}
+Toast2.displayName = "Toast";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Avatar,
@@ -538,5 +708,7 @@ MultiStep.displayName = "MultiStep";
   MultiStep,
   Text,
   TextArea,
-  TextInput
+  TextInput,
+  Toast,
+  Tooltip
 });

@@ -40,6 +40,7 @@ declare const fontWeights: {
 declare const fonts: {
     default: string;
     code: string;
+    tooltip: string;
 };
 
 declare const lineHeights: {

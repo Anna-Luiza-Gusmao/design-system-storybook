@@ -69,7 +69,8 @@ var fontWeights = {
 };
 var fonts = {
   default: "Roboto, sans-serif",
-  code: "monospace"
+  code: "monospace",
+  tooltip: "Inter, sans-serif"
 };
 var lineHeights = {
   shorter: "125%",
@@ -491,6 +492,173 @@ function MultiStep({ size, currentStep = 1 }) {
   ] });
 }
 MultiStep.displayName = "MultiStep";
+
+// src/components/Tooltip/index.tsx
+import { TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
+
+// src/components/Tooltip/styles.ts
+import * as Tooltip from "@radix-ui/react-tooltip";
+var TooltipContainer = styled(Tooltip.Root, {});
+var TooltipItem = styled("button", {
+  all: "unset",
+  padding: "$4 1.625rem",
+  background: "$gray800",
+  border: 0,
+  borderRadius: "$sm",
+  color: "$white",
+  fontFamily: "$default",
+  fontWeight: "$regular",
+  fontSize: "$md",
+  "&:hover": {
+    cursor: "pointer"
+  }
+});
+var TooltipPortal = styled(Tooltip.Portal, {});
+var TooltipContent = styled(Tooltip.Content, {
+  fontFamily: "$tooltip",
+  lineHeight: "$short",
+  fontSize: "$sm",
+  color: "$gray100",
+  borderRadius: "$sm",
+  padding: "$3 $4",
+  backgroundColor: "$gray900",
+  userSelect: "none"
+});
+var TooltipArrow = styled(Tooltip.Arrow, {
+  fill: "$gray900"
+});
+
+// src/components/Tooltip/index.tsx
+import { jsx as jsx5, jsxs as jsxs4 } from "react/jsx-runtime";
+function Tooltip2({ day, month, availability }) {
+  const checkaAvailability = () => {
+    if (availability === true)
+      return "Dispon\xEDvel";
+    else
+      return "Indispon\xEDvel";
+  };
+  return /* @__PURE__ */ jsx5(TooltipProvider, { children: /* @__PURE__ */ jsxs4(TooltipContainer, { children: [
+    /* @__PURE__ */ jsx5(TooltipTrigger, { asChild: true, children: /* @__PURE__ */ jsx5(TooltipItem, { children: day }) }),
+    /* @__PURE__ */ jsx5(TooltipPortal, { children: /* @__PURE__ */ jsxs4(TooltipContent, { sideOffset: 5, children: [
+      day,
+      " de ",
+      month,
+      " - ",
+      checkaAvailability(),
+      /* @__PURE__ */ jsx5(TooltipArrow, {})
+    ] }) })
+  ] }) });
+}
+Tooltip2.displayName = "Tooltip";
+
+// src/components/Toast/index.tsx
+import { ToastProvider } from "@radix-ui/react-toast";
+
+// src/components/Toast/styles.ts
+import * as Toast from "@radix-ui/react-toast";
+var Button2 = styled("button", {
+  all: "unset",
+  borderRadius: "$sm",
+  fontSize: "$sm",
+  fontWeight: "$medium",
+  fontFamily: "$default",
+  textAlign: "center",
+  minWidth: 120,
+  boxSizing: "border-box",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+  padding: "$4 $4",
+  cursor: "pointer",
+  color: "$white",
+  background: "$ignite500",
+  "&:hover": {
+    background: "$ignite300"
+  }
+});
+var ToastContainer = styled(Toast.Root, {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: "$16",
+  background: "$gray800",
+  border: "1px solid $gray600",
+  padding: "$3 $5",
+  borderRadius: 6
+});
+var ToastViewport = styled(Toast.Viewport, {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  display: "flex",
+  flexDirection: "column",
+  padding: "$8",
+  maxWidth: "100vw",
+  margin: 0,
+  listStyle: "none",
+  zIndex: 2147483647,
+  outline: "none"
+});
+var ToastTitle = styled(Toast.Title, {
+  color: "$white",
+  fontFamily: "$default",
+  fontWeight: "$bold",
+  lineHeight: "$base",
+  fontSize: "$5"
+});
+var ToastDescription = styled(Toast.Description, {
+  color: "$gray200",
+  fontFamily: "$default",
+  fontWeight: "$regular",
+  lineHeight: "$base",
+  fontSize: "0.875rem",
+  margin: 0
+});
+var ToastAction = styled(Toast.Action, {
+  gridArea: "action"
+});
+var CloseButton = styled("button", {
+  all: "unset",
+  display: "inline-flex",
+  justifyContent: "flex-end"
+});
+
+// src/components/Toast/index.tsx
+import { useState } from "react";
+import { X } from "phosphor-react";
+import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
+function Toast2({ dayOfTheWeek, day, month, hour }) {
+  const [open, setOpen] = useState(false);
+  return /* @__PURE__ */ jsxs5(ToastProvider, { swipeDirection: "right", children: [
+    /* @__PURE__ */ jsx6(
+      Button2,
+      {
+        onClick: () => {
+          setOpen(!open);
+        },
+        children: "Open Toast"
+      }
+    ),
+    /* @__PURE__ */ jsxs5(ToastContainer, { open, onOpenChange: setOpen, children: [
+      /* @__PURE__ */ jsxs5("div", { children: [
+        /* @__PURE__ */ jsx6(ToastTitle, { children: "Agendamento realizado" }),
+        /* @__PURE__ */ jsx6(ToastDescription, { asChild: true, children: /* @__PURE__ */ jsxs5("p", { children: [
+          dayOfTheWeek,
+          ", ",
+          day,
+          " de ",
+          month,
+          " \xE0s ",
+          hour,
+          "h"
+        ] }) })
+      ] }),
+      /* @__PURE__ */ jsx6(ToastAction, { asChild: true, altText: "Agendamento Realizado", children: /* @__PURE__ */ jsx6(CloseButton, { children: /* @__PURE__ */ jsx6(X, { size: 24, color: "#A9A9B2", style: { cursor: "pointer" } }) }) })
+    ] }),
+    /* @__PURE__ */ jsx6(ToastViewport, {})
+  ] });
+}
+Toast2.displayName = "Toast";
 export {
   Avatar2 as Avatar,
   Box,
@@ -500,5 +668,7 @@ export {
   MultiStep,
   Text,
   TextArea,
-  TextInput
+  TextInput,
+  Toast2 as Toast,
+  Tooltip2 as Tooltip
 };

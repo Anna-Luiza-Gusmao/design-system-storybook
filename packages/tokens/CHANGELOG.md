@@ -1,5 +1,11 @@
 # @anna-ignite-ui-dev/tokens
 
+## 4.0.0
+
+### Major Changes
+
+- Add New Components of Information - Tooltip and Toast
+
 ## 3.0.0
 
 ### Major Changes
