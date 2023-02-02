@@ -595,6 +595,22 @@ var import_react_toast = require("@radix-ui/react-toast");
 
 // src/components/Toast/styles.ts
 var Toast = __toESM(require("@radix-ui/react-toast"));
+var hide = keyframes({
+  from: {
+    opacity: 1
+  },
+  to: {
+    opacity: 0
+  }
+});
+var open = keyframes({
+  from: {
+    transform: "translateX(calc(100% + 25px));"
+  },
+  to: {
+    transform: "translateX(0)"
+  }
+});
 var Button2 = styled("button", {
   all: "unset",
   borderRadius: "$sm",
@@ -623,7 +639,13 @@ var ToastContainer = styled(Toast.Root, {
   background: "$gray800",
   border: "1px solid $gray600",
   padding: "$3 $5",
-  borderRadius: 6
+  borderRadius: 6,
+  '&[data-state="closed"]': {
+    animation: `${hide} 100ms ease-in`
+  },
+  '&[data-state="open"]': {
+    animation: `${open} 200ms ease-out`
+  }
 });
 var ToastViewport = styled(Toast.Viewport, {
   position: "fixed",
@@ -667,18 +689,18 @@ var import_react2 = require("react");
 var import_phosphor_react3 = require("phosphor-react");
 var import_jsx_runtime6 = require("react/jsx-runtime");
 function Toast2({ dayOfTheWeek, day, month, hour }) {
-  const [open, setOpen] = (0, import_react2.useState)(false);
+  const [open2, setOpen] = (0, import_react2.useState)(false);
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_react_toast.ToastProvider, { swipeDirection: "right", children: [
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
       Button2,
       {
         onClick: () => {
-          setOpen(!open);
+          setOpen(!open2);
         },
         children: "Open Toast"
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastContainer, { open, onOpenChange: setOpen, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(ToastContainer, { open: open2, onOpenChange: setOpen, children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastTitle, { children: "Agendamento realizado" }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ToastDescription, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("p", { children: [

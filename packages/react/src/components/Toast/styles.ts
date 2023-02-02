@@ -1,5 +1,23 @@
 import * as Toast from '@radix-ui/react-toast'
-import { styled } from '../../styles'
+import { styled, keyframes } from '../../styles'
+
+const hide = keyframes({
+  from: {
+    opacity: 1,
+  },
+  to: {
+    opacity: 0,
+  },
+})
+
+const open = keyframes({
+  from: {
+    transform: 'translateX(calc(100% + 25px));',
+  },
+  to: {
+    transform: 'translateX(0)',
+  },
+})
 
 export const Button = styled('button', {
   all: 'unset',
@@ -34,7 +52,15 @@ export const ToastContainer = styled(Toast.Root, {
   background: '$gray800',
   border: '1px solid $gray600',
   padding: '$3 $5',
-  borderRadius: 6
+  borderRadius: 6,
+
+  '&[data-state="closed"]': {
+    animation: `${hide} 100ms ease-in`,
+  },
+
+  '&[data-state="open"]': {
+    animation: `${open} 200ms ease-out`,
+  },
 })
 
 export const ToastViewport = styled(Toast.Viewport, {
@@ -52,29 +78,29 @@ export const ToastViewport = styled(Toast.Viewport, {
 })
 
 export const ToastTitle = styled(Toast.Title, {
-    color: '$white',
-    fontFamily: '$default',
-    fontWeight: '$bold',
-    lineHeight: '$base',
-    fontSize: '$5'
+  color: '$white',
+  fontFamily: '$default',
+  fontWeight: '$bold',
+  lineHeight: '$base',
+  fontSize: '$5',
 })
 
 export const ToastDescription = styled(Toast.Description, {
-    color: '$gray200',
-    fontFamily: '$default',
-    fontWeight: '$regular',
-    lineHeight: '$base',
-    fontSize: '0.875rem',
+  color: '$gray200',
+  fontFamily: '$default',
+  fontWeight: '$regular',
+  lineHeight: '$base',
+  fontSize: '0.875rem',
 
-    margin: 0
+  margin: 0,
 })
 
 export const ToastAction = styled(Toast.Action, {
-    gridArea: 'action',
+  gridArea: 'action',
 })
 
 export const CloseButton = styled('button', {
-    all: 'unset',
-    display: 'inline-flex',
-    justifyContent: 'flex-end'
+  all: 'unset',
+  display: 'inline-flex',
+  justifyContent: 'flex-end',
 })

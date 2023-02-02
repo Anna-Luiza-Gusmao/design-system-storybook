@@ -556,6 +556,22 @@ import { ToastProvider } from "@radix-ui/react-toast";
 
 // src/components/Toast/styles.ts
 import * as Toast from "@radix-ui/react-toast";
+var hide = keyframes({
+  from: {
+    opacity: 1
+  },
+  to: {
+    opacity: 0
+  }
+});
+var open = keyframes({
+  from: {
+    transform: "translateX(calc(100% + 25px));"
+  },
+  to: {
+    transform: "translateX(0)"
+  }
+});
 var Button2 = styled("button", {
   all: "unset",
   borderRadius: "$sm",
@@ -584,7 +600,13 @@ var ToastContainer = styled(Toast.Root, {
   background: "$gray800",
   border: "1px solid $gray600",
   padding: "$3 $5",
-  borderRadius: 6
+  borderRadius: 6,
+  '&[data-state="closed"]': {
+    animation: `${hide} 100ms ease-in`
+  },
+  '&[data-state="open"]': {
+    animation: `${open} 200ms ease-out`
+  }
 });
 var ToastViewport = styled(Toast.Viewport, {
   position: "fixed",
@@ -628,18 +650,18 @@ import { useState } from "react";
 import { X } from "phosphor-react";
 import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
 function Toast2({ dayOfTheWeek, day, month, hour }) {
-  const [open, setOpen] = useState(false);
+  const [open2, setOpen] = useState(false);
   return /* @__PURE__ */ jsxs5(ToastProvider, { swipeDirection: "right", children: [
     /* @__PURE__ */ jsx6(
       Button2,
       {
         onClick: () => {
-          setOpen(!open);
+          setOpen(!open2);
         },
         children: "Open Toast"
       }
     ),
-    /* @__PURE__ */ jsxs5(ToastContainer, { open, onOpenChange: setOpen, children: [
+    /* @__PURE__ */ jsxs5(ToastContainer, { open: open2, onOpenChange: setOpen, children: [
       /* @__PURE__ */ jsxs5("div", { children: [
         /* @__PURE__ */ jsx6(ToastTitle, { children: "Agendamento realizado" }),
         /* @__PURE__ */ jsx6(ToastDescription, { asChild: true, children: /* @__PURE__ */ jsxs5("p", { children: [

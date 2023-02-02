@@ -1,5 +1,11 @@
 # @anna-ignite-ui-dev/react
 
+## 5.0.0
+
+### Major Changes
+
+- Alter Toask Component
+
 ## 4.0.0
 
 ### Major Changes
